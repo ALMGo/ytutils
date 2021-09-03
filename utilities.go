@@ -3,12 +3,37 @@ package ytutils
 import "google.golang.org/api/youtube/v3"
 
 func processThumbnails(thumbs *youtube.ThumbnailDetails) Thumbnails {
+	var defaultRes = ""
+	if thumbs.Default != nil {
+		defaultRes = thumbs.Default.Url
+	}
+
+	var mediumRes = ""
+	if thumbs.Medium != nil {
+		mediumRes = thumbs.Medium.Url
+	}
+
+	var maxRes = ""
+	if thumbs.Maxres != nil {
+		maxRes = thumbs.Maxres.Url
+	}
+
+	var highRes = ""
+	if thumbs.High != nil {
+		highRes = thumbs.High.Url
+	}
+
+	var standardRes = ""
+	if thumbs.Standard != nil {
+		standardRes = thumbs.Standard.Url
+	}
+
 	return Thumbnails{
-		DefaultRes:  thumbs.Default.Url,
-		MediumRes:   thumbs.Medium.Url,
-		MaxRes:      thumbs.Maxres.Url,
-		HighRes:     thumbs.High.Url,
-		StandardRes: thumbs.Standard.Url,
+		DefaultRes:  defaultRes,
+		MediumRes:   mediumRes,
+		MaxRes:      maxRes,
+		HighRes:     highRes,
+		StandardRes: standardRes,
 	}
 }
 
